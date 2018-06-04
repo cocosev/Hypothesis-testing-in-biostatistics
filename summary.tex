@@ -41,7 +41,7 @@
 \usepackage{hyperref}
 %\graphicspath{ {-} }
 \usepackage[toc,page]{appendix}
-
+\newtheorem{theorem}{Teorema}
 %opening
 \title{Hypothesis testing in biostatistics}
 \author{Ruhugu, cocoseva, thebooort}
@@ -55,7 +55,150 @@ We do science á.Just for books to appear in our bibliography for now:
 \cite{velez1993principios} \cite{rosner2015fundamentals}
 \end{abstract}
 
-\section{Summary and utilities }
+\section{Summary and utilities del \cite{velez1993principios} }
+\subsection{Tema 7}
+\subsubsection{metodo de los momentos:}
+Igualar los primeros momentos teóricos poblacionales (aquellos no constantes) a los correspondientes momentos muestrales hasta obtener un sistema de ecuaciones resoluble:
+$$E_\theta[X^r]=\alpha(\theta_1,...)$$
+$$a_r=\frac{1}{n}\sum_{i=1}^{n}X_i^r$$
+$$\alpha_r=a_r $$
+Aunque pueden funcionar carecen de justificación seria.
+\subsubsection{metodo maxima verosimilitud}
+Dada una m.a.s. de un apoblacion, la aproximacion de los parametros debe hacerse como aquella que maximiza la probabilidad de obtener esa m.a.s.
+Special guest: ecuaciones de verosimilitud:
+$$\frac{\partial}{\partial\theta_j}log f_\theta(x_1,x_2,...)=0$$
+$$\forall j$$
+\subsubsection{propiedades asintoticas de los estimadores de maxima vero1similitud}
+Quien dice esto dice cascar dos teoremas. No creo que sean main point del trabajo, pero se pueden mirar
+\subsubsection{estimacion bayesiana}
+Esto si que creo que no entra nada, pasando.
+\subsubsection{estimacion minimo cuadratica}
+Dados los vectores de prediccion y experimentacion, ajustarlos de manera que la norma eculidea entre ellos sea la minima. 
+\subsubsection{Ejercicios con aspectos teoricos pero no hay ej. signi de lo que buscamos}
+\subsection{Tema 8}
+\subsubsection{Intro}
+Hipotesis que especifican totalmente la distribucion poblacional : hipotesis simples (constituidas por una unica funcion de distribucion)
+
+Hipótesis  que comprenden varias distribuciones poblacionales se califican de: hipótesis compuestas.
+
+So much tralla con el lema de Neyman-Pearson.
+
+Tema 8 y 9 : paramétricos
+Tema 10 no paramétrico (buscamos contrastar propiedad global de la distribución)
+\subsubsection{Planteamiento general de los contrastes de hipótesis}
+Sea $H_0$ la hipotesis nula y $H_1$ la hipotesis alternativa. El problema del contraste de hipotesis consiste en aceptar o rechazar $H_0$.
+
+Tendremos que dividir para ello el espacio muestral  en dos regiones distintas: region critica (rechazo) region de aceptacion (aceptacion).
+Esto nos lleva a los test no aleatorizados.
+
+Si queremos tener un test aleatorizado: un test a. es cualquier funcion ($\phi$) mediable que vaya del espacio de muestras a $[0,1]$ (funcion critica del test), de manera que esa expresa la probabilidad de rechazar la hipotesis nula cuando se observa la muestra.
+tendremos, pues probabilidad $\phi$ de rechazar $H_0$ y $1-\phi$ de no hacerlo. 
+
+Tipos de errores: tipo I : rechazar $H_0$ cuando es cierta . tipo II: aceptar $H_0$ cuando es falsa.
+
+Por tanto a la hora de plantear o diseñar un test de hipotesis:
+1.fijar una cota para cometer error de tipo 1 , $\alpha$(nivel de significacion)
+
+2. Excluir todos los test que no impongan que la probabilidad de rechazar $H_0$ cuando es cierta no supere el valor de $\alpha$  
+
+3. Entre los test no excluidos por la condicion anterior, tratar de minimizar la probabilidad de error de tipo II.
+
+
+En el marco de los problemas parametricos, el criterio descrito para la seleccion de test puede formularse como:
+
+
+Si la distribucion teorica depende de un parametro $\theta \in \Theta$ acerca del cual hay que contrastar la hipotesis nula $H_0: \theta \in \Theta_0$ frente a la alternativa $H_1: \theta \in \Theta_1$ se denomina funcion de potencia, $\beta(\theta)$, de un test a la probabilidad de rechazar $H_0$ cuando el valor del parametro es $\theta$. Es decir, si se trata de un test no aleatorizado de region critica C entonces: $$\beta(\theta)=P_\theta(C)$$
+mientras que en general, para un test de funcion critica $\varphi$, es $$\beta(\theta)=E_\theta[\varphi(X_1,...,X_n)].$$
+Un test tiene nivel de significacion $\alpha$ si es:  $$\beta(\theta)\leq\alpha \text{ para cada } \theta \in \Theta_0;$$
+y se denomina tamaño del test al número: $$sup_{\theta\in\Theta_0}\beta(\theta).$$
+
+Es deseable que tamaño y nivel de significacion coincidan, verificandose: 
+$$sup_{\theta\in\Theta_0}\beta(\theta)=\alpha$$
+
+Para distribuciones discretas tendremos que recurrir a test aleatorizados en los cuales variar $\varphi$ de forma continua.
+
+Si tenemos que hacer varios test de funciones criticas podemos obtener una ordenacion parcial de los test mediante la función potencia.
+
+Lo que se suele hacer es diseñar un test de manera que obtengamos la funcion potencia dependiente de $\alpha$ y que se decidad con todas las curvas de potencia cual nos viene bien. Sin embargo esto a menudo es dificil. Por tanto lo que se hace es proceder al diseño en funcion de $\alpha$ y una vez obtenida la muestra concreta, observar el nivel de significacion mas pequeño para el que tal muestra obliga a rechazar la hipotesis nula, éste numero es el p-valor o nivel critico (indica el apoyo que la hipotesis nula recibe de las observaciones, cuanto más grande, mas confirmada queda la hipotesis nula.)
+
+
+Un nivel critico superior a 0,1 es apoyo suficiente para mantenerr la hipotesis nula. Cuanto mas cercana a cero se encuentre mas confiadamente podemos rechazar la hipotesis nula ( no perder de vista la probabilidad de error tipo II)
+
+\subsubsection{Contraste de hipótesis simple frente a simple}
+metodo sistematico para determinar los test de maxima potencia en cualquier contraste de hipotesis simple frente a simple:
+Test no aleatorizado:
+Lema de Neyman-Pearson y posterior ejemplo.
+\begin{theorem}
+Dada una muestra aleatoria con distribucion $P_\theta$ sea $f_\theta(x_1,...,x_n)$ su funcion de densidad o de probabilidad (segun que la poblacion sea continua o discreta). Si $C^*\subset X$ es tal que: $$\{(x_1,...,x_n)\in X | f_\theta \ge kf_\theta\}\subset C^*\subset\{(x_1,...,x_n)\in X | f_\theta \geq kf_\theta\}$$
+para alguna constante $k>0$ y es $P_theta_0(C*)=\alpha$, entonces $C^*$ es la region critica de un test de nivel de significacion $\alpha$ para contrastar $H_0:\theta =\theta_0$ frente a $H_1: \theta=\theta_1$, de máxima potencia dentro de la familia de test no aleatorizados.
+\end{theorem}
+
+ También se destacan casos discretos. Los vamos a hacer?
+ 
+ \subsubsection{Contrastes de hipótesis unilaterales}
+
+
+Es habitual que la hipotesis alternativa no esté tan bien definida. Lo que habitualmente se tiene en la practica son situaciones de la forma $H_0: \theta \geq \Theta$ frente a $H_1: \theta < \Theta$ o viceversa, que reciben el nombre de test unilaterales. Vemos como podemos obtener test uniformemmente de maxima potencia para contrastar hipotesis unilaterales:
+\begin{theorem}
+	Karlin-Rubin: Si la distribucion $P_\theta$ de la muestra tiene razon de verosimilitud monotona el estadistico $T(x_1,..,x_n)$ entonces:
+	\begin{enumerate}[a]
+		\item Para cada $\alpha\in(0,1)$ existe un test $\varphi$ de tamaño $\alpha$ y uniformemente de maxima potencia para contrastar $H_0: \theta \leq\theta_0$ frente a $H_1: \theta >\theta_0$ que es de la forma: 
+		
+		\item todo test con funcion critica de la forma anterior tiene funcion de potencia $\beta()\theta$ estrictamente creciente, mientras sea $0<\beta(\theta)<1.$
+		\item Para cualquier test $\varphi'$ con $E_{\theta_0}[\varphi']=\alpha$ se cumple $E_{\theta_0}[\varphi]\leq E_{\theta_0}[\varphi']$ para cualquier $\theta \leq \theta_0$.
+	\end{enumerate}
+\end{theorem}
+Le siguen la demostracion y un ejemplo.
+
+\subsubsection{Hipotesis bilaterales}
+Son hipotesis de la forma parametro=$\theta_0$ frente a parametro $\neq\theta_0$.
+AQUI YA SALE LA NORMAL!!! :D
+Introduccion del concepto de test insesgado: La probabillidad de rechazar $H_0$ cuando es falsa es mauor que la de rechazarla cuando es cierta (notese que cualquier  test uniformemente de maxima potencia es insesgado).
+
+
+Introduce el teorema de Lehmann pero creo que nos lo podemos saltar.
+
+\subsection{Tema 9: Metodos de contraste.}
+
+\subsubsection{Test de tazon de verosimilitudes}
+El test se utiliza en situaciones en las que se desea contrastar si un parametro de la distribucion de la muestra pertenece a un subconjunto del espacio de parametros frente al complementario de ese conjunto.
+
+El test se basa em que para una muestra fija, su verosimilitud $f_\theta(x_1,...,x_n)$ es una medida de lo bien que explica el valor $\theta$ del parametro los resultados obtenidos. Por consiguiente $ sup_{\theta_0\in\Theta_0}f_\theta(x_1,...,x_n) $ supone un indice acerca de la mejor explicacion de la muestra que puede obtenerse baho $ H_0 $ y coincide con la cantidad que se puede calcular usando el estimador de maxima verosimilitud $ f_{\hat{\theta}}(x_1,...,x_n) $. $sup_{\theta\in\Theta}f_\theta(x_1,...,x_n) $ proporciona tal indice entre todos los posibles valores del parametro y pasa lo mismo con el estimador de maxima verosimilitud.
+
+Si $ f_{\theta_0} $ es mas bajo que la otra implica que la explicacion de los resultados sobre la base de que $H_0$ es cierta es mucho peor que la explicacion si tal restriccion; por tanto rechazamo $H_0$
+La comparacion entre ambas se hace con el cociente
+
+Se emplearan test no aleatorizados cuando la distribucion del estadistico cociente sea continua. La distribucion que se coge es la $\chi^2$.
+
+El resto son ejemplos, tendríamos que ir eligiendolos.
+
+\subsubsection{Constrastes multiples}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
